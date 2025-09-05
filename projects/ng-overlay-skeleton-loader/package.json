@@ -1,0 +1,16 @@
+{
+  "name": "ng-overlay-skeleton-loader",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/core": "^20.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ebrahim-salehipanah/ng-overlay-skeleton-loader.git"
+  },
+  "sideEffects": false
+}
