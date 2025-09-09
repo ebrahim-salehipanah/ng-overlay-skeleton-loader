@@ -1,59 +1,65 @@
-# NgOverlaySkeletonLoader
+# Ng Overlay Skeleton Loader
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+A lightweight Angular directive to add customizable skeleton loading states to your components.
 
-## Development server
-
-To start a local development server, run:
+## Installation
 
 ```bash
-ng serve
+npm install ng-overlay-skeleton-loader
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Usage
 
-## Code scaffolding
+Import the directive directly into your standalone component:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+```ts
+import { Component } from '@angular/core';
+import { SkeletonLoaderDirective } from 'ng-overlay-skeleton-loader';
 
-```bash
-ng generate component component-name
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [SkeletonLoaderDirective],
+  templateUrl: './app.component.html',
+})
+export class AppComponent {
+  isLoading = true;
+  items = ['Item 1', 'Item 2', 'Item 3'];
+  title = 'My Card Title';
+  content = 'This is some card content.';
+}
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Basic Example
 
-```bash
-ng generate --help
+```html
+<ul class="item-list">
+  <li
+    class="py-2"
+    *skeleton="isLoading; width: '100%'; height: '18px'; className: 'mb-3'"
+  >
+    {{ item }}
+  </li>
+</ul>
 ```
 
-## Building
+### Card Overlay Example
 
-To build the project run:
-
-```bash
-ng build
+```html
+<div class="card" *skeleton="isLoading; repeat: 3; width: '80%'; height: '25px'; borderRadius: '12px'">
+  <h2>{{ title }}</h2>
+  <p>{{ content }}</p>
+</div>
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Options
 
-## Running unit tests
+* `width` – Width of the skeleton (default: `'100%'`).
+* `height` – Height of the skeleton (default: `'16px'`).
+* `repeat` – Number of skeleton items to render (default: `1`).
+* `borderRadius` – Border radius of the skeleton (default: `'4px'`).
+* `className` – Custom classes for styling.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## License
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT © 2025
