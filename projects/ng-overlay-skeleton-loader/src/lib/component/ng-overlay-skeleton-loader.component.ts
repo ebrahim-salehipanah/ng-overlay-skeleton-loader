@@ -7,8 +7,8 @@ import { Component, ElementRef, Input } from '@angular/core';
     `
       :host {
         background: rgb(239, 241, 246) no-repeat;
-        border-radius: 10px;
         display: block;
+        position: relative;
       }
       :host::before {
         content: '';
@@ -43,6 +43,7 @@ export class SkeltonLoadingComponent {
   @Input() height?: string;
   @Input() className?: string;
   @Input() isOverlay = false;
+  @Input() borderRadius: string = '10px'; // ✅ new input
 
   constructor(private host: ElementRef<HTMLElement>) {}
 
@@ -53,19 +54,18 @@ export class SkeltonLoadingComponent {
       host.classList.add(this.className);
     }
 
+    Object.assign(host.style, {
+      width: this.width ?? '100%',
+      height: this.height ?? '20px',
+      borderRadius: this.borderRadius, // ✅ apply border radius
+    });
+
     if (this.isOverlay) {
       Object.assign(host.style, {
         position: 'absolute',
         top: '0',
         left: '0',
-        width: this.width ?? '100%',
-        height: this.height ?? '20px',
         zIndex: '1',
-      });
-    } else {
-      Object.assign(host.style, {
-        width: this.width ?? '100%',
-        height: this.height ?? '20px',
       });
     }
   }
