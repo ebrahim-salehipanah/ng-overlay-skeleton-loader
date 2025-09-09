@@ -29,25 +29,28 @@ export class SkeletonLoadingDirective implements OnChanges {
     private host: ElementRef<HTMLElement>
   ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.vcr.clear();
-    const hostEl = this.host.nativeElement;
+ngOnChanges(changes: SimpleChanges): void {
+  const hostEl = this.host.nativeElement;
 
-    if (this.wrapperDiv) {
-      this.renderer.insertBefore(this.wrapperDiv.parentNode, hostEl, this.wrapperDiv);
-      this.renderer.removeChild(this.wrapperDiv.parentNode, this.wrapperDiv);
-      this.wrapperDiv = undefined;
-    }
+  // Remove old wrapper if exists
+  if (this.wrapperDiv) {
+    const parent = this.wrapperDiv.parentNode!;
+    this.renderer.insertBefore(parent, hostEl, this.wrapperDiv);
+    this.renderer.removeChild(parent, this.wrapperDiv);
+    this.wrapperDiv = undefined;
+  }
 
-    this.vcr.clear();
+  this.vcr.clear();
 
-    if (this.isLoading && this.isOverlay) {
+  if (this.isLoading) {
+    if (this.isOverlay) {
       const wrapper = this.renderer.createElement('div');
+      this.wrapperDiv = wrapper; // ✅ remember wrapper
       this.renderer.setStyle(wrapper, 'position', 'relative');
       this.renderer.setStyle(wrapper, 'overflow', 'hidden');
       if (this.height) this.renderer.setStyle(wrapper, 'height', this.height);
 
-      const parent = hostEl.parentNode;
+      const parent = hostEl.parentNode!;
       this.renderer.insertBefore(parent, wrapper, hostEl);
       this.renderer.removeChild(parent, hostEl);
 
@@ -58,11 +61,11 @@ export class SkeletonLoadingDirective implements OnChanges {
           height: this.height,
           className: this.className,
           isOverlay: true,
-          borderRadius: this.borderRadius ?? '10px', // ✅ pass border radius
+          borderRadius: this.borderRadius ?? '10px',
         });
         this.renderer.appendChild(wrapper, ref.location.nativeElement);
       }
-    } else if (this.isLoading && !this.isOverlay) {
+    } else {
       for (let i = 0; i < this.size; i++) {
         const ref = this.vcr.createComponent(SkeltonLoadingComponent);
         Object.assign(ref.instance, {
@@ -70,12 +73,14 @@ export class SkeletonLoadingDirective implements OnChanges {
           height: this.height,
           className: this.className,
           isOverlay: false,
-          borderRadius: this.borderRadius ?? '10px', // ✅ pass border radius
+          borderRadius: this.borderRadius ?? '10px',
         });
         this.renderer.appendChild(hostEl, ref.location.nativeElement);
       }
-    } else {
-      this.vcr.createEmbeddedView(this.tpl);
     }
+  } else {
+    this.vcr.createEmbeddedView(this.tpl);
   }
+}
+
 }
