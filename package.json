@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "publish:github": "ng build ng-overlay-skeleton --base-href '/ng-overlay-skeleton-loader/' && npx angular-cli-ghpages --dir=dist/ng-overlay-skeleton/browser"
   },
   "prettier": {
     "printWidth": 100,
