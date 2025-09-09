@@ -12,9 +12,12 @@ import { SkeletonLoadingDirective } from 'ng-overlay-skeleton-loader';
 export class App {
   isLoading = true;
 
-  items = ['Angular', 'NestJS', 'Laravel', 'Vue.js', 'React'];
-
-  toggleLoading() {
-    this.isLoading = !this.isLoading;
-  }
+  cards = [
+    { id: 1,title: 'Dashboard Card 1', text: 'This card shows content once loading is finished.' },
+    { id: 2,title: 'Dashboard Card 2', text: 'Skeleton placeholders improve user experience.' },
+    { id: 3,title: 'Dashboard Card 3', text: 'You can customize width, height, and border radius.' },
+  ];
+toggleLoading(){
+  this.isLoading = !this.isLoading;
+}
 }
