@@ -28,6 +28,10 @@
     <section class="section advanced-examples">
       <h2>🎨 Advanced Examples</h2>
 
+      <button (click)="toggleLoading()" class="toggle-btn">{{
+        isLoading ? 'without' : 'with'
+        }} skelton</button>
+
       <!-- Cards Demo -->
       <div class="demo-cards">
         <h3>Card Skeletons</h3>
@@ -53,7 +57,7 @@
                 "
               >
                 <div class="chart-placeholder">
-                  <img src="img/chart.png" alt="chart placeholder image" />
+                  Loading content...
                 </div>
               </div>
             </div>
