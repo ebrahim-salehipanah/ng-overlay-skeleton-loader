@@ -9,6 +9,7 @@ import { Component, ElementRef, Input } from '@angular/core';
         background: rgb(239, 241, 246) no-repeat;
         display: block;
         position: relative;
+        overflow: hidden;
       }
       :host::before {
         content: '';

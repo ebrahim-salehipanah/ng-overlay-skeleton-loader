@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkeletonLoadingDirective } from 'ng-overlay-skeleton-loader';
+import { DemoComponent } from './demo/demo.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, SkeletonLoadingDirective],
+  imports: [CommonModule,DemoComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
