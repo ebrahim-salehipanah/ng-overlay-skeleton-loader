@@ -8,6 +8,9 @@ A lightweight Angular directive to add customizable skeleton loading states to y
 npm install ng-overlay-skeleton-loader
 ```
 
+## Example
+See Example in [here](https://ebrahim-salehipanah.github.io/ng-overlay-skeleton-loader/).
+
 ## Usage
 
 Import the directive directly into your standalone component:
