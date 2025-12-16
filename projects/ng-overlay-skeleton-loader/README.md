@@ -24,32 +24,19 @@ import { SkeletonLoaderDirective } from 'ng-overlay-skeleton-loader';
 })
 export class AppComponent {
   isLoading = true;
-  items = ['Item 1', 'Item 2', 'Item 3'];
-  title = 'My Card Title';
-  content = 'This is some card content.';
 }
 ```
 
 ### Basic Example
 
 ```html
-<ul class="item-list">
-  <li
+  <div
     class="py-2"
     *skeleton="isLoading; width: '100%'; height: '18px'; className: 'mb-3'"
   >
-    {{ item }}
-  </li>
-</ul>
-```
+    loading ...
+  </div>
 
-### Card Overlay Example
-
-```html
-<div class="card" *skeleton="isLoading; repeat: 3; width: '80%'; height: '25px'; borderRadius: '12px'">
-  <h2>{{ title }}</h2>
-  <p>{{ content }}</p>
-</div>
 ```
 
 ## Options
