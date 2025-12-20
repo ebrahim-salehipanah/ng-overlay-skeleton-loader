@@ -18,6 +18,7 @@ Import the directive directly into your standalone component:
 ```ts
 import { Component } from '@angular/core';
 import { SkeletonLoaderDirective } from 'ng-overlay-skeleton-loader';
+  // you can also import SkeltonLoadingComponent component from ng-overlay-skeleton-loader and use it as placeholder.
 
 @Component({
   selector: 'app-root',
